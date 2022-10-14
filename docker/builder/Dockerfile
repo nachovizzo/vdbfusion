@@ -9,6 +9,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
     ccache \
+    clang-format \
     cmake \
     git \
     && rm -rf /var/lib/apt/lists/*
@@ -52,6 +53,7 @@ RUN git clone --depth 1 https://github.com/nachovizzo/openvdb.git -b nacho/vdbfu
     && cmake \
     -DOPENVDB_BUILD_PYTHON_MODULE=ON \
     -DUSE_NUMPY=ON \
+    -DPYOPENVDB_INSTALL_DIRECTORY="/usr/local/lib/python3.8/dist-packages" \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
     -DUSE_ZLIB=OFF \
     ..\
